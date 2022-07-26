@@ -49,7 +49,7 @@ export function Todos() {
         <div className={styles.listOfTodos}>
           <input type="checkbox" name="" id="" />
           <p key={content}>{content}</p>
-          <a href="" onClick={handleRemoveTask}>
+          <a href="">
             <Trash size={22} />
           </a>
         </div>
