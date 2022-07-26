@@ -1,0 +1,108 @@
+.textAreaDiv textarea:focus {
+  outline: transparent;
+  border: 0.0625rem solid;
+  border-color: var(--purple-dark);
+}
+
+.todos {
+  max-width: 46rem;
+  margin: -1.625rem auto;
+}
+
+.textAreaDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.textAreaDiv textarea {
+  resize: none;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--gray-500);
+  padding: 1rem;
+  height: 3.375rem;
+  width: 39.875rem;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  color: var(--gray-300);
+}
+
+.buttonDiv button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--gray-100);
+  background-color: var(--blue-dark);
+  margin-left: 0.5rem;
+  padding: 1.1rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.buttonDiv button:hover {
+  background-color: var(--blue);
+  transition: background-color 0.1s ease-in-out;
+}
+
+.buttonDiv button div {
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.tasksAreaDiv {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.createdTasksDiv,
+.doneTasksDiv {
+  display: flex;
+  align-items: center;
+}
+
+.createdTasksDiv span,
+.doneTasksDiv span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  color: var(--gray-100);
+  background-color: var(--gray-400);
+  width: 1.5625rem;
+  height: 1.1875rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+  border-radius: 62.4375rem;
+}
+
+.createdTasksDiv p {
+  color: var(--blue);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.doneTasksDiv p {
+  color: var(--purple);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .textAreaDiv {
+    flex-direction: column;
+  }
+  .textAreaDiv textarea,
+  button {
+    width: 21rem;
+  }
+  .textAreaDiv button {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}
