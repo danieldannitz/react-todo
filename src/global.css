@@ -19,7 +19,11 @@
   box-sizing: border-box;
 }
 
-html {
+html,
+button,
+textarea,
+p,
+h1 {
   font-family: "Inter", sans-serif;
 }
 
