@@ -1,20 +1,33 @@
 import styles from "./Todos.module.css";
 import { PlusCircle, Trash } from "phosphor-react";
+import { useState } from "react";
+
 export function Todos() {
-  function handleEventChange() {
-    console.log(event.target.value);
+  const [task, setTask] = useState(); //estado responsável por observar alterações
+
+  function handleEventChange(event) {
+    const watchValueChange = event.target.value;
+    setTask(watchValueChange); //setTask observa a alteração da textarea
+  }
+
+  const [newTask, setNewTask] = useState([]); //estado responsável por armazenar novas tasks
+
+  function handleCreateNewTask() {
+    setNewTask([...newTask, task]);
+    setTask("");
   }
 
   return (
     <section className={styles.todos}>
       <div className={styles.textAreaDiv}>
         <textarea
-          name=""
+          name="textarea"
           placeholder="Adicione uma nova tarefa"
           onChange={handleEventChange}
+          value={task}
         ></textarea>
         <div className={styles.buttonDiv}>
-          <button type="submit">
+          <button type="submit" onClick={handleCreateNewTask}>
             Criar
             <div>
               <PlusCircle size={18} />
@@ -32,16 +45,15 @@ export function Todos() {
           <span>0</span>
         </div>
       </div>
-      <div className={styles.listOfTodos}>
-        <input type="checkbox" name="" id="" />
-        <p>
-          Integer urna interdum massa libero auctor neque turpis turpis semper.
-          Duis vel sed fames integer.
-        </p>
-        <a href="">
-          <Trash size={22} />
-        </a>
-      </div>
+      {newTask.map((content) => (
+        <div className={styles.listOfTodos}>
+          <input type="checkbox" name="" id="" />
+          <p key={content}>{content}</p>
+          <a href="" onClick={handleRemoveTask}>
+            <Trash size={22} />
+          </a>
+        </div>
+      ))}
     </section>
   );
 }
