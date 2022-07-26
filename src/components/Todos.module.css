@@ -93,6 +93,33 @@
   font-weight: 700;
 }
 
+.listOfTodos {
+  margin-top: 40px;
+  border-radius: 8px;
+  padding: 16px;
+  height: 72px;
+  background-color: var(--gray-500);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listOfTodos p {
+  margin-left: 12px;
+  font-weight: 400;
+  color: var(--gray-100);
+}
+
+.listOfTodos a {
+  color: var(--gray-300);
+}
+
+.listOfTodos a:hover {
+  color: var(--danger);
+  transition: color 0.1s ease-in-out;
+  margin-left: 12px;
+}
+
 @media (max-width: 768px) {
   .textAreaDiv {
     flex-direction: column;
@@ -104,5 +131,8 @@
   .textAreaDiv button {
     margin-left: 0;
     margin-top: 0.5rem;
+  }
+  .listOfTodos p {
+    font-size: 14px;
   }
 }
