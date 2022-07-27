@@ -12,9 +12,14 @@ export function Todos() {
   }
 
   function handleCreateNewTask() {
-    setNewTask([...newTask, task]);
-
+    if (task !== "") {
+      setNewTask([task, ...newTask]);
+    }
     setTask("");
+  }
+
+  function handleDeleteToDo(index) {
+    setNewTask([...newTask.filter((task) => task.index !== index)]);
   }
 
   return (
@@ -38,18 +43,19 @@ export function Todos() {
       <div className={styles.tasksAreaDiv}>
         <div className={styles.createdTasksDiv}>
           <p>Tarefas Criadas</p>
-          <span>{handleAmountOfTask}</span>
+          <span>0</span>
         </div>
         <div className={styles.doneTasksDiv}>
           <p>Tarefas Concluídas</p>
           <span>0</span>
         </div>
       </div>
-      {newTask.map((content) => (
-        <div className={styles.listOfTodos}>
-          <input type="checkbox" name="" id="" />
-          <p key={content}>{content}</p>
-          <a href=""></a>
+      {newTask.map((todo, index) => (
+        <div className={styles.listOfTodos} key={index}>
+          <p>{todo}</p>
+          <a href="">
+            <Trash onClick={() => handleDeleteToDo(index)} />
+          </a>
         </div>
       ))}
     </section>
