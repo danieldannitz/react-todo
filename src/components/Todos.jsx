@@ -1,25 +1,32 @@
-import styles from "./Todos.module.css";
-import { PlusCircle, Trash } from "phosphor-react";
 import { useState } from "react";
+
+import styles from "./Todos.module.css";
+
+import { PlusCircle, Trash } from "phosphor-react";
+import { motion } from "framer-motion";
 
 export function Todos() {
   const [task, setTask] = useState(); //estado responsável por observar alterações
   const [newTask, setNewTask] = useState([]); //estado responsável por armazenar novas tasks
 
   function handleEventChange(event) {
+    event.preventDefault();
     const watchValueChange = event.target.value;
     setTask(watchValueChange); //setTask observa a alteração da textarea
   }
 
   function handleCreateNewTask() {
     if (task !== "") {
-      setNewTask([task, ...newTask]);
+      setNewTask([
+        ...newTask,
+        { content: task, completed: false, id: Date.now() },
+      ]);
     }
     setTask("");
   }
 
-  function handleDeleteToDo(index) {
-    setNewTask([...newTask.filter((task) => task.index !== index)]);
+  function handleDeleteToDo(id) {
+    setNewTask([...newTask.filter((task) => task.id !== id)]);
   }
 
   return (
@@ -40,24 +47,28 @@ export function Todos() {
           </button>
         </div>
       </div>
-      <div className={styles.tasksAreaDiv}>
-        <div className={styles.createdTasksDiv}>
-          <p>Tarefas Criadas</p>
-          <span>0</span>
-        </div>
-        <div className={styles.doneTasksDiv}>
-          <p>Tarefas Concluídas</p>
-          <span>0</span>
-        </div>
-      </div>
-      {newTask.map((todo, index) => (
-        <div className={styles.listOfTodos} key={index}>
-          <p>{todo}</p>
-          <a href="">
-            <Trash onClick={() => handleDeleteToDo(index)} />
-          </a>
-        </div>
+
+      {newTask.map((todo) => (
+        <motion.div
+          animate={{
+            y: 25,
+          }}
+          key={todo.id}
+        >
+          <div className={styles.listOfTodos}>
+            <p>{todo.content}</p>
+            <a href="#" onClick={() => handleDeleteToDo(todo.id)}>
+              <Trash />
+            </a>
+          </div>
+        </motion.div>
       ))}
     </section>
   );
 }
+
+//{
+/* <a href="" onClick={() => handleDeleteToDo(task.id)}>
+<Trash />
+</a> */
+//}
