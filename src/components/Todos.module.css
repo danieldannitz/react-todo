@@ -121,6 +121,7 @@
   .textAreaDiv textarea,
   button {
     width: 21rem;
+    text-align: center;
   }
   .textAreaDiv button {
     margin-left: 0;
